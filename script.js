@@ -1,4 +1,4 @@
-// Get DOM elements
+
 const countryInput = document.getElementById('country-input');
 const searchBtn = document.getElementById('search-btn');
 const spinner = document.getElementById('loading-spinner');
@@ -6,10 +6,10 @@ const countryInfo = document.getElementById('country-info');
 const borderingCountries = document.getElementById('bordering-countries');
 const errorMessage = document.getElementById('error-message');
 
-// Hide spinner on page load
+
 spinner.classList.add('hidden');
 
-// Helper functions
+
 function showSpinner() {
     spinner.classList.remove('hidden');
 }
@@ -30,7 +30,6 @@ function displayError(message) {
     errorMessage.style.display = 'block';
 }
 
-// Display main country info
 function displayCountry(country) {
     countryInfo.innerHTML = `
         <h2>${country.name.common}</h2>
@@ -44,7 +43,6 @@ function displayCountry(country) {
     `;
 }
 
-// Display bordering countries (batch fetch)
 async function displayBorders(borderCodes) {
     if (!borderCodes || borderCodes.length === 0) {
         borderingCountries.innerHTML = '<h3>Bordering Countries</h3><p>No bordering countries (island nation).</p>';
@@ -92,11 +90,11 @@ async function displayBorders(borderCodes) {
     }
 }
 
-// Main search function
+
 async function searchCountry() {
     const countryName = countryInput.value.trim();
 
-    // Always clear previous results first – even for empty input
+    
     clearResults();
 
     if (!countryName) {
@@ -126,7 +124,6 @@ async function searchCountry() {
 
         const country = data[0];
 
-        // Warn if multiple exact matches (rare with fullText=true)
         let extraInfo = '';
         if (data.length > 1) {
             extraInfo = `<p style="color: #e67e22; font-style: italic; margin-top: 12px;">
@@ -148,7 +145,6 @@ async function searchCountry() {
     }
 }
 
-// Event listeners
 searchBtn.addEventListener('click', searchCountry);
 
 countryInput.addEventListener('keypress', (e) => {
